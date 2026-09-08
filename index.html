@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#3f3f40">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bronco Inspection">
+<meta name="description" content="Bronco flatbed trailer inspection checklist — Rhino Energy Solutions">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/favicon-32.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+<title>Bronco Trailer Inspection</title>
+</head>
+<body>
+
+<div class="app">
+  <header class="app-hdr">
+    <div class="hdr-top">
+      <div class="hdr-brand">
+        <div class="hdr-logo"><img src="icons/icon-192.png" alt="Rhino Energy Solutions"></div>
+        <div class="hdr-divider"></div>
+        <div class="hdr-text">
+          <div class="hdr-name">Bronco Trailer Inspection</div>
+          <div class="hdr-sub">Rhino Energy Solutions</div>
+        </div>
+      </div>
+      <div class="hdr-date">Today<br><b id="hdr-today"></b></div>
+    </div>
+  </header>
+
+  <main class="app-body" id="app-body">
+    <!-- rendered by app.js -->
+  </main>
+
+  <footer class="action-bar">
+    <div class="validation-line" id="validation-line"></div>
+    <button class="btn" id="export-btn" onclick="onExportClick()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      Export &amp; Send PDF
+    </button>
+    <button class="btn secondary new-insp" onclick="confirmNewInspection()">Start New Inspection</button>
+  </footer>
+</div>
+
+<!-- Photo options sheet -->
+<div class="sheet-backdrop" id="sheet-backdrop" onclick="closePhotoSheet()"></div>
+<div class="sheet" id="photo-sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">Add Photo</div>
+  <div class="sheet-sub" id="sheet-sub">&nbsp;</div>
+  <button class="sheet-opt" onclick="triggerCamera()">
+    <span class="opt-icon"><svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="3.5"/></svg></span>
+    <span><span class="opt-text">Take a Photo</span><br><span class="opt-sub">Opens your camera</span></span>
+  </button>
+  <button class="sheet-opt" onclick="triggerLibrary()">
+    <span class="opt-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 3.5 3.5L16 12l4 5"/></svg></span>
+    <span><span class="opt-text">Choose from Library</span><br><span class="opt-sub">Pick an existing photo</span></span>
+  </button>
+  <button class="sheet-cancel" onclick="closePhotoSheet()">Cancel</button>
+</div>
+<input type="file" id="photo-input-camera" accept="image/*" capture="environment" style="display:none">
+<input type="file" id="photo-input-library" accept="image/*" style="display:none">
+
+<!-- Photo viewer modal -->
+<div class="modal-bg" id="photo-modal-bg" onclick="if(event.target===this) closePhotoViewer()">
+  <div class="modal" id="photo-modal-content"></div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<div class="spinner-overlay" id="spinner-overlay">
+  <div class="spinner"></div>
+  <div class="spinner-text" id="spinner-text">Generating PDF&hellip;</div>
+</div>
+
+<script src="vendor/jspdf.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
