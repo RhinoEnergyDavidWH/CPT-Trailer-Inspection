@@ -313,7 +313,6 @@ function renderApp() {
       </div>
     </div>`;
   body.insertAdjacentHTML('beforeend', signCardHtml);
-  body.insertAdjacentHTML('beforeend', '<div class="credit-line">Created by David J Wilson — Rhino Energy Solutions</div>');
 
   initSignaturePad();
   updateValidationUI();
